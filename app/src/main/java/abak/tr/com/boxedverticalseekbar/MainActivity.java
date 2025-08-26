@@ -1,7 +1,7 @@
 package abak.tr.com.boxedverticalseekbar;
 
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,15 +17,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        final TextView valueTextView = (TextView)findViewById(R.id.valueTextView);
-
-        bv = (BoxedVertical)findViewById(R.id.boxed_vertical);
+        final TextView valueTextView = findViewById(R.id.valueTextView);
+        bv = findViewById(R.id.boxed_vertical);
 
         bv.setOnBoxedPointsChangeListener(new BoxedVertical.OnValuesChangeListener() {
             @Override
             public void onPointsChanged(BoxedVertical boxedPoints, final int points) {
-                valueTextView.setText("Current Value is " + String.valueOf(points));
+                valueTextView.setText("Current Value is " + points);
             }
 
             @Override
@@ -40,23 +38,19 @@ public class MainActivity extends AppCompatActivity {
         });
 
         bv.setValue(60);
-
         System.out.println("VALUE: " + bv.getValue());
-        valueTextView.setText("Current Valuex is " + String.valueOf(bv.getValue()));
-
-
+        valueTextView.setText("Current Value is " + bv.getValue());
     }
 
     public void setBorder(View v) {
-        int val = Integer.valueOf(v.getTag().toString());
+        int val = Integer.parseInt(v.getTag().toString());
         bv.setCornerRadius(val);
-        Toast.makeText(MainActivity.this, "New corner radius is " + String.valueOf(val), Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, "New corner radius is " + val, Toast.LENGTH_SHORT).show();
     }
 
     public void setMax(View v) {
-        int val = Integer.valueOf(v.getTag().toString());
+        int val = Integer.parseInt(v.getTag().toString());
         bv.setMax(val);
-        Toast.makeText(MainActivity.this, "New max value is " + String.valueOf(val), Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, "New max value is " + val, Toast.LENGTH_SHORT).show();
     }
-
 }
